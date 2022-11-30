@@ -13,6 +13,7 @@ import { Search } from "@material-ui/icons";
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import img from './img/school4.jpg'
+import axios from 'axios'
 
 
 const Get = () => {
@@ -20,24 +21,25 @@ const Get = () => {
     const [data1, setData1] = useState([])
     const [request, setRequest] = useState(0)
     const [value, setValue] = useState("")
+    const [page, setPage] =useState(1)
+    // const [post, setPost] =useState([])
     useEffect(() => {
-        fetch(`https://api.jikan.moe/v4/characters?page=0&limit=15&q=&order_by=favorites&sort=desc`, {
+        fetch(`https://api.jikan.moe/v4/characters?page=${page}&limit=15&q=&order_by=favorites&sort=desc`, {
             method: "GET",
         }).then((result) => {
             result.json().then((resp) => {
-                // console.log(resp)
                 let tempArray = [];
                 tempArray.push(resp.pagination.items);
                 let tempArray1 = [];
                 tempArray1.push(resp.pagination.items.total);
                 let resp1 = resp.data
-                // let resp2 = resp.pagination
                 setData(resp1)
                 setData1(tempArray)
                 setRequest(tempArray1)
+                // setPost(resp1)
             })
         })
-    }, [])
+    }, [page])
     console.log("data", data)
     console.log("data1", data1)
     console.log("request", request)
@@ -50,7 +52,7 @@ const Get = () => {
     const handleSearch = async (e) => {
         e.preventDefault()
 
-        fetch(`https://api.jikan.moe/v4/characters?page=0&limit=15&q=${value}&order_by=favorites&sort=desc`).then((result) => {
+        fetch(`https://api.jikan.moe/v4/characters?page=${page}&limit=15&q=${value}&order_by=favorites&sort=desc`).then((result) => {
             result.json().then((resp) => {
                 // console.log(resp)
                 let resp1 = resp.data
@@ -139,7 +141,12 @@ const Get = () => {
                     </Table>
                 </TableContainer><br></br>
                 <Stack spacing={2}>
-                    <Pagination count={10} color="primary" sx={{ marginLeft: "40rem" }} />
+                    <Pagination count={10} 
+                    color="primary" sx={{ marginLeft: "40rem" }}
+                    showFirstButton={true}
+                    showLastButton={true}
+                    Page={page}
+                    onChange={(event,value)=>setPage(value)} />
                 </Stack><br></br>
             </Grid>
         </Grid>
