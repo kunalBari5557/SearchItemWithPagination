@@ -12,6 +12,8 @@ import Button from '@mui/material/Button';
 import { Search } from "@material-ui/icons";
 import img from './img/R.png'
 import { MDBPaginationItem, MDBPagination, MDBPaginationLink } from "mdb-react-ui-kit";
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 
 const Get = () => {
     const [data, setData] = useState([], 0)
@@ -126,7 +128,10 @@ const Get = () => {
                             }
                         </TableBody>
                     </Table>
-                </TableContainer>
+                </TableContainer><br></br>
+                <Stack spacing={2}>
+                    <Pagination count={10} color="primary" sx={{ marginLeft: "40rem" }} />
+                </Stack><br></br>
             </Grid>
         </Grid>
 
