@@ -10,7 +10,6 @@ import FavoriteTwoToneIcon from '@mui/icons-material/FavoriteTwoTone';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Button from '@mui/material/Button';
 import { Search } from "@material-ui/icons";
-import { MDBPaginationItem, MDBPagination, MDBPaginationLink } from "mdb-react-ui-kit";
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import img from './img/school4.jpg'
