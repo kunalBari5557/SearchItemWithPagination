@@ -10,10 +10,11 @@ import FavoriteTwoToneIcon from '@mui/icons-material/FavoriteTwoTone';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Button from '@mui/material/Button';
 import { Search } from "@material-ui/icons";
-import img from './img/R.png'
 import { MDBPaginationItem, MDBPagination, MDBPaginationLink } from "mdb-react-ui-kit";
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
+import img from './img/school4.jpg'
+
 
 const Get = () => {
     const [data, setData] = useState([], 0)
@@ -61,15 +62,24 @@ const Get = () => {
     }
 
     return (
+        <div
+        class="bg_image"
+        style={{
+          backgroundImage: `url(${img})`,
+          backgroundSize: "cover",
+          height: "240vh",
+          color: "#f5f5f5"
+        }}
+      >
         <Grid container spacing={3} >
             <Grid item xs={12} md={12}>
                 <h2>Search Anime characters</h2>
-                <TableContainer component={Paper} >
+                <TableContainer>
                     <form style={{ margin: 'auto', padding: '15px', maxwidth: '400px', alignContent: 'center' }}
                         className="d-flex input-group w-auto"
                         onSubmit={handleSearch}
                         onChange={(e) => handleChange(e)}
-                    >
+                    ><br></br>
                         <TextField
                             id="string-search"
                             name="customReference"
@@ -93,7 +103,7 @@ const Get = () => {
                                 type="submit"
                                 variant="contained"
                                 size="medium"
-                                sx={{ marginLeft: "22rem", marginTop: "-7rem" }}>
+                                sx={{ marginLeft: "22rem", marginTop: "-7rem"}}>
                                 search
                             </Button>
                         </div>
@@ -114,10 +124,10 @@ const Get = () => {
                                         <>
                                             <TableRow >
                                                 <TableCell component="th" scope="row"><img src={item.images.jpg.image_url} height={50} weight={50} /></TableCell>
-                                                <TableCell component="th" scope="row">{item.mal_id}</TableCell>
-                                                <TableCell component="th" scope="row">{item.name}<br></br>{item.nicknames}</TableCell>
-                                                <TableCell component="th" scope="row" align="center"><FavoriteTwoToneIcon />{item.favorites}</TableCell>
-                                                <TableCell component="th" scope="row"><ArrowForwardIcon onClick={() => window.open(item.url)} /></TableCell>
+                                                <TableCell component="th" scope="row" sx={{color:"white"}}>{item.mal_id}</TableCell>
+                                                <TableCell component="th" scope="row" sx={{color:"white"}}>{item.name}<br></br>{item.nicknames}</TableCell>
+                                                <TableCell component="th" scope="row" align="center" sx={{color:"white"}}><FavoriteTwoToneIcon sx={{color:"pink"}}/>{item.favorites}</TableCell>
+                                                <TableCell component="th" scope="row" sx={{color:"white"}}><ArrowForwardIcon onClick={() => window.open(item.url)} /></TableCell>
                                             </TableRow>
                                         </>
                                     )
@@ -134,7 +144,7 @@ const Get = () => {
                 </Stack><br></br>
             </Grid>
         </Grid>
-
+        </div>
     )
 
 }
