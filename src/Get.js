@@ -4,7 +4,6 @@ import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import FavoriteTwoToneIcon from '@mui/icons-material/FavoriteTwoTone';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -13,15 +12,13 @@ import { Search } from "@material-ui/icons";
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import img from './img/school4.jpg'
-import axios from 'axios'
-
 
 const Get = () => {
     const [data, setData] = useState([], 0)
     const [data1, setData1] = useState([])
     const [request, setRequest] = useState(0)
     const [value, setValue] = useState("")
-    const [page, setPage] =useState(1)
+    const [page, setPage] = useState(1)
     // const [post, setPost] =useState([])
     useEffect(() => {
         fetch(`https://api.jikan.moe/v4/characters?page=${page}&limit=15&q=&order_by=favorites&sort=desc`, {
@@ -64,92 +61,85 @@ const Get = () => {
 
     return (
         <div
-        class="bg_image"
-        style={{
-          backgroundImage: `url(${img})`,
-          backgroundSize: "cover",
-          height: "240vh",
-          color: "#f5f5f5"
-        }}
-      >
-        <Grid container spacing={3} >
-            <Grid item xs={12} md={12}>
-                <h2>Search Anime characters</h2>
-                <TableContainer>
-                    <form style={{ margin: 'auto', padding: '15px', maxwidth: '400px', alignContent: 'center' }}
-                        className="d-flex input-group w-auto"
-                        onSubmit={handleSearch}
-                        onChange={(e) => handleChange(e)}
-                    ><br></br>
-                        <TextField
-                            id="string-search"
-                            name="customReference"
-                            type="search"
-                            variant="outlined"
-                            placeholder="search Name..."
-                            size="small"
-                            value={value}
-                            className="search_textfield"
-                            onChange={(e) => setValue(e.target.value)}
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position="start">
-                                        <Search />
-                                    </InputAdornment>
-                                ),
-                            }}
-                        /><br></br>
-                        <div>
-                            <br></br><Button
-                                type="submit"
-                                variant="contained"
-                                size="medium"
-                                sx={{ marginLeft: "22rem", marginTop: "-7rem"}}>
-                                search
-                            </Button>
-                        </div>
-                    </form>
-                    {/* {
-                        data1.map((item) => {
-                            return (
-                                <Typography>Total <bold>{(item.total)}</bold> matching anime characters found</Typography>
-                            )
-                        })
-                    } */}
-                    <Typography>Total <bold>{(request)}</bold> matching anime characters found</Typography>
-                    <Table sx={{ display: 'flex', justifyContent: 'center' }}>
-                        <TableBody>
-                            {data.length !== 0 ?
-                                data.map((item) => {
-                                    return (
-                                        <>
-                                            <TableRow >
-                                                <TableCell component="th" scope="row"><img src={item.images.jpg.image_url} height={50} weight={50} /></TableCell>
-                                                <TableCell component="th" scope="row" sx={{color:"white"}}>{item.mal_id}</TableCell>
-                                                <TableCell component="th" scope="row" sx={{color:"white"}}>{item.name}<br></br>{item.nicknames}</TableCell>
-                                                <TableCell component="th" scope="row" align="center" sx={{color:"white"}}><FavoriteTwoToneIcon sx={{color:"pink"}}/>{item.favorites}</TableCell>
-                                                <TableCell component="th" scope="row" sx={{color:"white"}}><ArrowForwardIcon onClick={() => window.open(item.url)} /></TableCell>
-                                            </TableRow>
-                                        </>
-                                    )
-                                }) : (
-                                    <center>
-                                        <h4>No Record Found</h4>
-                                    </center>)
-                            }
-                        </TableBody>
-                    </Table>
-                </TableContainer><br></br>
-                <Stack spacing={2}>
-                    <Pagination count={10} 
-                    color="primary" sx={{ marginLeft: "40rem" }}
-                    showFirstButton={true}
-                    showLastButton={true}
-                    Page={page}
-                    onChange={(event,value)=>setPage(value)} />
-                </Stack><br></br>
+            class="bg_image"
+            style={{
+                backgroundImage: `url(${img})`,
+                backgroundSize: "cover",
+                height: "240vh",
+                color: "#f5f5f5"
+            }}
+        >
+            <Grid container spacing={3} >
+                <Grid item xs={12} md={12}>
+                    <h2>Search Anime characters</h2>
+                    <TableContainer>
+                        <form style={{ margin: 'auto', padding: '15px', maxwidth: '400px', alignContent: 'center' }}
+                            className="d-flex input-group w-auto"
+                            onSubmit={handleSearch}
+                            onChange={(e) => handleChange(e)}
+                        ><br></br>
+                            <TextField
+                                id="string-search"
+                                name="customReference"
+                                type="search"
+                                variant="outlined"
+                                placeholder="search Name..."
+                                size="small"
+                                value={value}
+                                className="search_textfield"
+                                onChange={(e) => setValue(e.target.value)}
+                                InputProps={{
+                                    startAdornment: (
+                                        <InputAdornment position="start">
+                                            <Search />
+                                        </InputAdornment>
+                                    ),
+                                }}
+                            /><br></br>
+                            <div>
+                                <br></br><Button
+                                    type="submit"
+                                    variant="contained"
+                                    size="medium"
+                                    sx={{ marginLeft: "22rem", marginTop: "-7rem" }}>
+                                    search
+                                </Button>
+                            </div>
+                        </form>
+                        <Typography>Total <bold>{(request)}</bold> matching anime characters found</Typography>
+                        <Table sx={{ display: 'flex', justifyContent: 'center' }}>
+                            <TableBody>
+                                {data.length !== 0 ?
+                                    data.map((item) => {
+                                        return (
+                                            <>
+                                                <TableRow >
+                                                    <TableCell component="th" scope="row"><img src={item.images.jpg.image_url} height={50} weight={50} /></TableCell>
+                                                    <TableCell component="th" scope="row" sx={{ color: "white" }}>{item.mal_id}</TableCell>
+                                                    <TableCell component="th" scope="row" sx={{ color: "white" }}>{item.name}<br></br>{item.nicknames}</TableCell>
+                                                    <TableCell component="th" scope="row" align="center" sx={{ color: "white" }}><FavoriteTwoToneIcon sx={{ color: "pink" }} />{item.favorites}</TableCell>
+                                                    <TableCell component="th" scope="row" sx={{ color: "white" }}><ArrowForwardIcon onClick={() => window.open(item.url)} /></TableCell>
+                                                </TableRow>
+                                            </>
+                                        )
+                                    }) : (
+                                        <center>
+                                            <h4>No Record Found</h4>
+                                        </center>)
+                                }
+                            </TableBody>
+                        </Table>
+                    </TableContainer><br></br>
+                    <Stack spacing={2}>
+                        <Pagination count={10}
+                            color="primary" sx={{ marginLeft: "40rem" }}
+                            showFirstButton={true}
+                            showLastButton={true}
+                            Page={page}
+                            onChange={(event, value) => setPage(value)} />
+                    </Stack><br></br>
+                </Grid>
             </Grid>
-        </Grid>
         </div>
     )
 
