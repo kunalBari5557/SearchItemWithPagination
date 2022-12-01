@@ -37,11 +37,13 @@ const TablePagination = () => {
 
     const handleChange = (e) => {
         setCount(e.target.value)
+        setValue(e.target.value)
     }
 
 
     const handleSearch = async (e) => {
         e.preventDefault()
+        setCount(e.target.value)
 
         fetch(`https://api.jikan.moe/v4/characters?page=${page}&limit=15&q=${value}&order_by=favorites&sort=desc`).then((result) => {
             result.json().then((resp) => {
@@ -69,7 +71,7 @@ const TablePagination = () => {
                         <form style={{ margin: 'auto', padding: '15px', maxwidth: '400px', alignContent: 'center' }}
                             className="d-flex input-group w-auto"
                             onSubmit={handleSearch}
-                            onChange={(e) => handleChange(e)}
+                            // onChange={(e) => handleChange(e)}
                         ><br></br>
                             <TextField
                                 id="string-search"
