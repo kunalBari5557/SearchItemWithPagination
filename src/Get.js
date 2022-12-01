@@ -118,7 +118,7 @@ const Get = () => {
                                                     <TableCell component="th" scope="row" sx={{ color: "white" }}>{item.mal_id}</TableCell>
                                                     <TableCell component="th" scope="row" sx={{ color: "white" }}>{item.name}<br></br>{item.nicknames}</TableCell>
                                                     <TableCell component="th" scope="row" align="center" sx={{ color: "white" }}><FavoriteTwoToneIcon sx={{ color: "pink" }} />{item.favorites}</TableCell>
-                                                    <TableCell component="th" scope="row" sx={{ color: "white" }}><ArrowForwardIcon onClick={() => window.open(item.url)} /></TableCell>
+                                                    <TableCell component="th" scope="row" sx={{ color: "white" }}><ArrowForwardIcon sx={{ color: "blue" }} onClick={() => window.open(item.url)} /></TableCell>
                                                 </TableRow>
                                             </>
                                         )
@@ -131,7 +131,7 @@ const Get = () => {
                         </Table>
                     </TableContainer><br></br>
                     <Stack spacing={2}>
-                        <Pagination count={10}
+                        <Pagination count={data}
                             color="primary" sx={{ marginLeft: "40rem" }}
                             showFirstButton={true}
                             showLastButton={true}
