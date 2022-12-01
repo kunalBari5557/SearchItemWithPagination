@@ -117,7 +117,7 @@ const TablePagination = () => {
                                         )
                                     }) : (
                                         <center>
-                                            <h4>No Record Found</h4>
+                                            <h4>No Results Found!</h4>
                                         </center>)
                                 }
                             </TableBody>
