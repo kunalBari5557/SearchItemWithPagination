@@ -19,7 +19,6 @@ const Get = () => {
     const [request, setRequest] = useState(0)
     const [value, setValue] = useState("")
     const [page, setPage] = useState(1)
-    // const [post, setPost] =useState([])
     useEffect(() => {
         fetch(`https://api.jikan.moe/v4/characters?page=${page}&limit=15&q=&order_by=favorites&sort=desc`, {
             method: "GET",
@@ -33,7 +32,6 @@ const Get = () => {
                 setData(resp1)
                 setData1(tempArray)
                 setRequest(tempArray1)
-                // setPost(resp1)
             })
         })
     }, [page])
@@ -51,7 +49,6 @@ const Get = () => {
 
         fetch(`https://api.jikan.moe/v4/characters?page=${page}&limit=15&q=${value}&order_by=favorites&sort=desc`).then((result) => {
             result.json().then((resp) => {
-                // console.log(resp)
                 let resp1 = resp.data
                 setData(resp1)
                 setValue("")
