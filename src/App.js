@@ -1,10 +1,10 @@
 import './App.css';
-import Get from './Get';
+import TablePagination from './TablePagination';
 
 function App() {
   return (
     <div className="App">
-      <Get/>
+      <TablePagination/>
     </div>
   );
 }
